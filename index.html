@@ -1,0 +1,88 @@
+<html>
+  <head>
+    <title>Sum Finder App</title>
+    <style>
+      * {
+        font-family: "Cambria";
+        font-size: 40px;
+      }
+    </style>
+  </head>
+
+  <body style="background-color: linen">
+    <center>
+      <h1>Sum Finder App</h1>
+
+      <form onsubmit="compute()">
+        <input type="number" placeholder="Enter +ve integer" id="num" />
+        <br /><br />
+        <input type="submit" value="M1" />
+        <input type="submit" value="M2" />
+        <input type="submit" value="M3" />
+      </form>
+
+      <h2 id="msg"></h2>
+
+      <script>
+        function compute() {
+          event.preventDefault();
+          let num = document.getElementById("num");
+          let msg = document.getElementById("msg");
+          let action = document.activeElement.value;
+
+          if (num.value === "") {
+            alert("Please enter integer");
+            msg.innerHTML = "";
+            num.focus();
+            return;
+          }
+
+          if (num.value < 0) {
+            alert("-ve not allowed");
+            msg.innerHTML = "";
+            num.focus();
+            return;
+          }
+
+          if (num.value == 0) {
+            alert("Zero not allowed");
+            msg.innerHTML = "";
+            num.focus();
+            return;
+          }
+
+          let n = parseInt(num.value);
+
+          if (action === "M1") {
+            let i = 1;
+            let sum = 0;
+
+            while (i <= n) {
+              sum += i;
+              i++;
+            }
+
+            msg.innerHTML = `sum of ${n} - ${sum}`;
+          } else if (action === "M2") {
+            let i = 1;
+            let sum = 0;
+
+            do {
+              sum += i;
+              i++;
+            } while (i <= n);
+
+            msg.innerHTML = `sum of ${n} - ${sum}`;
+          } else if (action === "M3") {
+            let sum = 0;
+            for (let i = 1; i <= n; i++) {
+              sum += i;
+            }
+
+            msg.innerHTML = `sum of ${n} - ${sum}`;
+          }
+        }
+      </script>
+    </center>
+  </body>
+</html>
